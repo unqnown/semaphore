@@ -35,7 +35,7 @@ func (s Semaphore) Release(size ...int) {
 		<-s
 	}
 }
-func (s Semaphore) Wait() { s.Hijack(len(s)) }
+func (s Semaphore) Wait() { s.Hijack(cap(s)) }
 func (s Semaphore) Acquire(ctx context.Context) error {
 	select {
 	case s <- struct{}{}:
